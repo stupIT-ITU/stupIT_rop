@@ -1,0 +1,15 @@
+before_install:
+- sudo apt-get update && sudo apt-get install --no-install-recommends texlive-fonts-recommended
+  texlive-latex-extra texlive-fonts-extra texlive-latex-recommended dvipng
+script:
+- mkdir _build
+- pdflatex -output-directory _build rop.tex
+- pdflatex -output-directory _build rop.tex
+deploy:
+  provider: releases
+  api_key:
+    secure: A3HzZhZt3EJltUCcEd/p6IiEMcBZ9RvrzePqSI+YQtPnLPz43NnrXekegB3TAUhaOv6ntyuA9/V7JK73lSvktFhLy0Ehmq2Sxhx0+wJdpp1uUxRXksYlQrXiUkz8c5tMqxtuPLD/GCm8VGnPW2pNQnKludlKrHi52Emi42rukHFH8ChKTRpfMt7K7NBrhcZtZT3PwRqFPJDODOXP9sRR8jHdZHuvHiNBnG29aGyKem4lpNnwreG4/nYtaXPnPY/gOtgMjQexx+rTxoR8bg1XU5/eeGj2qX82v8RiU53vMBrYIXGjEP3/s59GX8oBs48WzI2Csy+pPIZ46vErhLKEzIawrm7ZOc6xI7LVCg8w/JO9Sh21LCcAGIsYSJpAYq4Cslnunz+0K9RaK5k1q06WAVeERHHhOzACJtEIKqjgG4bD5sKKY29ZTVBq9uzM/X1RQDhn0pahXCCNUg7W/U2HWBmoBXvz75taEtXbIRChwxlX5kDZ4OxhllBSThirFj7qOjfaD7IVmLhOyk+TLERImJciMYeGJ9NtZBXrZAoun6Cm6EIgFPXTym46Ac6WFPF4Q9kAjiEy2UziC62VhqLawcdgx6a9nMpUrS5nJbjSXiS2CFqTSYTFqomINurCsZ2eygEV157DMGDMTc8nW4SKh8WNkwWf+eORZ6/vF3geUCM=
+  file: _build/rop.pdf
+  skip_cleanup: true
+  on:
+      tags: true
